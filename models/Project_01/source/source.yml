@@ -1,0 +1,17 @@
+version: 2
+
+sources:
+  - name: PRODUCTION
+    tables:
+      - name: BRANDS
+      - name: CATEGORIES
+      - name: PRODUCTS
+      - name: STOCKS
+
+  - name: SALES
+    tables: 
+      - name: CUSTOMERS
+      - name: ORDERS
+      - name: ORDER_ITEMS
+      - name: STAFFS
+      - name: STORES
