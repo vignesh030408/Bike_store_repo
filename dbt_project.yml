@@ -35,5 +35,6 @@ models:
   my_new_project:
     # Applies to all files under models/example/
      project_01:
-      intermediates:
-        +materialized: table
+        intermediates:
+          +materialized: table
+        pre-hook: "insert into BIKESTORE_PRODUCTION.audit (model, state, time) values ('{{this.name}}','starting model deployment', 'current_timestamp')"

@@ -1,6 +1,7 @@
 {{
     config(
-        materialized='table', transient= false
+        materialized='table', transient= false,
+        pre_hook= ["insert into BIKESTORE_PRODUCTION.latest_brands (PRODUCT_NAME,BRAND_ID,CATEGORY_ID) values ('{{this.name}}', '787887', '5555')"]
     )
 }}
 with purchase as (
@@ -15,8 +16,7 @@ with purchase as (
         D.order_date,
         D.REQUIRED_DATE,
         D.SHIPPED_DATE,
-        D.Manager_id,
-        D.store_id
+        D.Manager_id
     FROM {{ ref('Categories') }} A 
     LEFT JOIN {{ ref('latest_brands') }} B ON A.PRODUCT_ID = B.PRODUCT_ID 
     LEFT JOIN {{ ref('stores') }} C ON C.PRODUCT_ID = B.PRODUCT_ID
